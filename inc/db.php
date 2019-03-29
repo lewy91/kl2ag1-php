@@ -55,7 +55,19 @@ $qstr="BEGIN;
         email CHAR(50) UNIQUE NOT NULL,
         datad INT NOT NULL
     );
-    INSERT INTO users VALUES (NULL,'admin','".sha1('haslo')."', 'admin@home.net',".time().");
+    INSERT INTO users VALUES (NULL,'admin','".sha1('haslo')."', 'admin@home.net',".time().")
+    CREATE TABLE klasy (
+        nazwa CHAR NOT NULL,
+        rok_naboru DATE NOT NULL,
+        rok_matury DATE NOT NULL,
+  
+    );
+    CREATE TABLE uczniowie (
+    imie CHAR NOT NULL,
+    nazwisko CHAR NOT NULL,
+    plec CHAR NOT NULL,
+    klasa CHAR NOT NULL,
+    );
 COMMIT;
 ";
 
