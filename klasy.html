@@ -1,0 +1,41 @@
+<?php
+    if (isset($_POST['nazwa'])) {
+        foreach ($_POST as $k => $v) {
+            ${$k} = clrtxt($v);
+        }
+        print $nazwa."<br>";
+        print $roknaboru."<br>";
+        print $rokmatury."<br>";
+
+        $klasa = new klasa($nazwa, $roknaboru, $rokmatury);
+        if($klasa->isValid() ){
+            $klasa->save();
+            $kom[]='Zapisano klasę';
+            get_kom();
+        }else{
+            $kom[]='Taka klasa istnieje lub wprowadzono niepoprawne dane';
+            get_kom();
+    
+        }
+		
+    }else{
+?>
+<form action="?id=<?php echo $id; ?>" method="POST">
+  <div class="form-group">
+    <label for="nazwa">Klasa:</label>
+    <input type="text" name="nazwa" id="nazwa" maxlength="10" required>
+  </div>
+  <div class="form-group">
+    <label for="roknaboru">Rok naboru:</label>
+    <input type="roknaboru" name="roknaboru" id="roknabory" maxlength="10" required>
+  </div>
+  <div class="form-group">
+    <label for="rokmatury">Rok matury:</label>
+    <input type="rokmatury" name="rokmatury" id="rokmatury" maxlength="10" required>
+  </div>
+
+  <input type="submit" name="zapisz" value="Zapisz" class="btn btn-primary">
+</form>
+<?php
+  }
+?>
